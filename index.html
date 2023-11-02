@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1521,6 +1521,52 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>I am interested in exploring data related to modern media representation of South Asian women in films. It would be interesting to explore this representation has changed over time. But I am still exploring different ideas for my final project, so I am not quite settled on one yet.</p>
 <p>Milestone 2:
 How does age influence Indian’s perceptions of traditional gender roles? I am interested in exploring how different generations and age groups in India differ in their perspectives of roles for men and women. For my hypothesis, I would expect younger age groups to be more liberal in their stance on these gender roles, especially considering the prevalent role of social media and the dismantling of traditional gender roles in modern society (lower marriage rates worldwide, more women becoming leaders in the workplace). Following this line of reasoning, I would expect older age groups to be more conservative because of the historic prevalence of traditional gender roles. My sample consists of a survey conducted by the Pew Research Center from November 17, 2019-March 23, 2020, which collected responses from 29,999 adults living in India. In this survey, adults of different age groups were asked about their perspectives of gender roles for men and women (among other questions), and their responses were recorded. My unit of analysis is the Indian population, including various age ranges and regional locations in the country. My explanatory variable is the age of the Indian individual, which is coded =1 for 18-25 year olds, =2 for 26-34 year olds, =3 for 35-44 year olds, =4 for 45-59 year olds, =5 for 60+ year olds. If the person didn’t know their age, the variable is coded =998, and if the person refused to answer the question, the variable is coded =999. My outcome variable of interest is the perspective of the individual on traditional gender roles, measured on questions 23a and 23b (which correspond with the respective column names in the dataset) which pose the statements: “A wife must always obey her husband”and “men should have more rights to a job than women,” asking individuals to respond from a scale of 1 (completely agree) to 4 (completely disagree). My hypothesis would be supported if the average response trend became a larger and larger value (indicating greater disagreement for the statement) as the age of the individual got younger. My hypothesis would be disproved if the average response trend became a smaller and smaller value (indicating greater support for the statement) as the age of the individual got younger.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://readr.tidyverse.org'>readr</a></span><span class='op'>)</span></span>
+<span><span class='va'>india</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"~/Downloads/India/india.csv"</span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>india</span> <span class='op'>&lt;-</span> <span class='va'>india</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Q23a</span>, <span class='va'>Q23b</span>, <span class='va'>QAGErec</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>wife_rights <span class='op'>=</span> <span class='va'>Q23a</span>,</span>
+<span>         female_rights <span class='op'>=</span> <span class='va'>Q23b</span>, </span>
+<span>         age <span class='op'>=</span> <span class='va'>QAGErec</span></span>
+<span>         <span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>india</span> <span class='op'>&lt;-</span> <span class='va'>india</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span></span>
+<span>    <span class='va'>age</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>,</span>
+<span>    <span class='va'>wife_rights</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>,</span>
+<span>    <span class='va'>female_rights</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span></span>
+<span>  <span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>age <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='va'>age</span><span class='op'>)</span>,</span>
+<span>         female_rights <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='va'>female_rights</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>age</span>, <span class='va'>female_rights</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span></span>
+<span>    n <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/context.html'>n</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span>  <span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>percent <span class='op'>=</span> <span class='va'>n</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>india_plot</span> <span class='op'>&lt;-</span> <span class='va'>india</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>age</span>, y <span class='op'>=</span> <span class='va'>percent</span>, fill <span class='op'>=</span> <span class='va'>female_rights</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span><span class='va'>india_plot</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
+</div>
+<p>bar plot with different ages on the x axis and average perspective on womens rights on the y axis</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
