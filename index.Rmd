@@ -55,7 +55,10 @@ india <- india |>
 
 india_plot <- india |>
   ggplot(mapping = aes(x = age, y = percent, fill = female_rights)) + 
-  geom_col()
+  geom_col() + 
+  labs ( 
+    x = "Age of respondent",
+    y = "Percent of Respondents ")
 india_plot
 
 ```
