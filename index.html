@@ -1564,12 +1564,15 @@ How does age influence Indian’s perceptions of traditional gender roles? I am 
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> </span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span> <span class='op'>(</span> </span>
 <span>    x <span class='op'>=</span> <span class='st'>"Age of respondent"</span>,</span>
-<span>    y <span class='op'>=</span> <span class='st'>"Percent of Respondents "</span><span class='op'>)</span></span>
+<span>    y <span class='op'>=</span> <span class='st'>"Percent of Respondents"</span>, </span>
+<span>    title <span class='op'>=</span> <span class='st'>"Views of Different Generations in India on Female Rights"</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_colour_discrete.html'>scale_fill_discrete</a></span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"Men Should Have More Rights to Jobs"</span>, labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Completely Agree"</span>, <span class='st'>"Mostly Agree"</span>, <span class='st'>"Mostly Disagree"</span>, <span class='st'>"Completely Disagree"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_discrete.html'>scale_x_discrete</a></span><span class='op'>(</span>breaks<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"1"</span>,<span class='st'>"2"</span>,<span class='st'>"3"</span>, <span class='st'>"4"</span>, <span class='st'>"5"</span><span class='op'>)</span>,</span>
+<span>        labels<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"18-25"</span>, <span class='st'>"26-34"</span>, <span class='st'>"35-44"</span>, <span class='st'>"45-59"</span>, <span class='st'>"60"</span><span class='op'>)</span><span class='op'>)</span></span>
 <span><span class='va'>india_plot</span></span></code></pre>
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
 </div>
-<p>bar plot with different ages on the x axis and average perspective on womens rights on the y axis</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

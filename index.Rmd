@@ -58,8 +58,11 @@ india_plot <- india |>
   geom_col() + 
   labs ( 
     x = "Age of respondent",
-    y = "Percent of Respondents ")
+    y = "Percent of Respondents", 
+    title = "Views of Different Generations in India on Female Rights") + 
+  scale_fill_discrete(name = "Men Should Have More Rights to Jobs", labels = c("Completely Agree", "Mostly Agree", "Mostly Disagree", "Completely Disagree")) + 
+  scale_x_discrete(breaks=c("1","2","3", "4", "5"),
+        labels=c("18-25", "26-34", "35-44", "45-59", "60"))
 india_plot
 
 ```
-bar plot with different ages on the x axis and average perspective on womens rights on the y axis
