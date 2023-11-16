@@ -11,6 +11,7 @@ output:
 
 ## Project thoughts
 
+Milestone 1: 
 I am interested in exploring data related to modern media representation of South Asian women in films. It would be interesting to explore this representation has changed over time. But I am still exploring different ideas for my final project, so I am not quite settled on one yet.
 
 Milestone 2: 
@@ -18,10 +19,11 @@ How does age influence Indian's perceptions of traditional gender roles? I am in
 
 ```{r}
 library(readr)
-india <- read_csv("~/Downloads/India/india.csv")
 library(tidyverse)
 library(ggplot2)
 library(dplyr)
+library(readr)
+india <- read_csv("India Religion Public Data - Pew Research Center (All Vars).csv")
 ```
 
 ```{r}
@@ -66,3 +68,29 @@ india_plot <- india |>
 india_plot
 
 ```
+
+```{r}
+ate_female_rights <- india |>
+  mutate (
+    female_rights_numeric = as.numeric(female_rights), 
+    age_numeric = as.numeric(age), 
+    treatment = case_when(
+      age == 1 ~ "18-25", 
+      age == 5 ~ "60+"),
+   
+  ) |>
+  group_by(treatment) |>
+  summarize(mean_female_rights = mean(female_rights_numeric, na.rm = TRUE)) |>
+  pivot_wider(
+    names_from = treatment, 
+    values_from = mean_female_rights
+  ) |>
+mutate(
+  ATE = `18-25` - `60+`
+) |>
+  select(`18-25`, `60+`, `ATE`)
+ate_female_rights
+
+knitr::kable(ate_female_rights, col.names = c("18-25", "60+", "ATE"))
+```
+For milestone 4, I wanted to calculate the Average Treatment Effect, studying the difference between the 18-24 year old's perspectives on female rights in India and 60+ year old's perspectives on female rights in India. My calculations and the resulting table that I made demonstrate that the Average Treatment Effect is 0 and there is no difference between the treatment effect and the control effect---in other words, age does not significantly change perspectives on female rights in India. This data analysis table showed me that my initial hypothesis that age affects perspectives on female rights in India was incorrect. For my future data analysis for this project, I am going to look at other factors that might affect perspectives on female rights, such as race, income, and perspectives on other issues. 
