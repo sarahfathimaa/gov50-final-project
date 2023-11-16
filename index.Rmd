@@ -91,6 +91,6 @@ mutate(
   select(`18-25`, `60+`, `ATE`)
 ate_female_rights
 
-knitr::kable(ate_female_rights, col.names = c("18-25", "60+", "ATE"))
+knitr::kable(ate_female_rights, col.names = c("18-25 year olds", "60+ year olds", "Average Treatment Effect"))
 ```
 For milestone 4, I wanted to calculate the Average Treatment Effect, studying the difference between the 18-24 year old's perspectives on female rights in India and 60+ year old's perspectives on female rights in India. My calculations and the resulting table that I made demonstrate that the Average Treatment Effect is 0 and there is no difference between the treatment effect and the control effect---in other words, age does not significantly change perspectives on female rights in India. This data analysis table showed me that my initial hypothesis that age affects perspectives on female rights in India was incorrect. For my future data analysis for this project, I am going to look at other factors that might affect perspectives on female rights, such as race, income, and perspectives on other issues. 
