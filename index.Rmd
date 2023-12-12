@@ -1,7 +1,7 @@
 ---
-title: "Gov 50 Final Project"
+title: "Education Level and Perspective on Wife Autonomy in India"
 author: "Sarah Fathima Mohammed"
-description: "My final project"
+description: "How does education level influence Indians' perspectives on wife obedience?"
 output:
   distill::distill_article:
     self_contained: false
@@ -9,15 +9,14 @@ output:
 
 
 
-## Project thoughts
-
-Introduction: 
+## Introduction
 
 How does education level influence Indians' perspectives on wife obedience?  I am interested in exploring how people of different education levels in India differ in their perspectives of roles for subordination of wives. For my hypothesis, I would expect Indians' who have a higher education to have slightly more progressive view on roles for wives. A higher education might influence Indians' perspectives on liberal thinking and expose them to feminist literature from around the world, which could lead them to becoming more progressive in their perspective on women's rights. Additionally, a higher education level might correspond with a higher socioeconomic status, which could  mean that more adults in the family are working (including wives).  
 
 This question is important because it looks at how socioeconomic factors, of which education received is a part, might affect people's perspectives. If we can understand the correlation between perspectives on familial gender roles and socioeconomic status, educational inequality can be understood to a greater extent. Additionally, we can perhaps push for increased education policy in India by describing educational inequality as having dangerous spillover effects into social spheres, including rights for wives in families.  
 
-Data: 
+## Data
+
 My sample consists of a survey conducted by the Pew Research Center from November 17, 2019-March 23, 2020, which collected responses from 29,999 adults living in India. In this survey, adults of different age groups were asked about their perspectives of gender roles for husbands and wives (among other questions), and their responses were recorded. My unit of analysis is the Indian population, including various age ranges and regional locations in the country. My explanatory variable is the objective education of the Indian individual, which is coded from 0 (pre-primary education) to 5 (tertiary education) based on the International Standard Classification of Education (ISCED). This is a cross-sectional study because it measures the perspectives of people in India who have different educational backgrounds at a singular point in time. 
 
 My outcome variable of interest is the subjective perspective of the individual on traditional gender roles, measured on survey question 23a which poses the statement: "A wife must always obey her husband" asking individuals to respond from a scale of 1 (completely agree) to 4 (completely disagree). My hypothesis would be supported if the average response trend became a larger and larger value (indicating greater disagreement for the statement) as the education level of the individual increased. My hypothesis would be disproved if the average response trend became a smaller and smaller value (indicating greater support for the statement) as the education level of the individual increased. 
@@ -75,7 +74,7 @@ ggplot(data = india,
     caption = "Data from PEW Research Center, 2019-2020, India"
   )
 ```
-Results: 
+## Results
 
 ```{r}
 ggplot(data = india, mapping = aes(x = education, y = wife_rights)) + 
@@ -100,7 +99,6 @@ modelsummary::modelsummary(india_fit,
 india_fit
 
 ```
-Results: 
 
 The jittered scatterplot, Perspectives on Wife Obedience vs. Education, demonstrates a correlation between a higher education and a more progressive perspective on roles for wives (a view that wives should not always obey their husbands). When education levels are low (from level 0, which represents a pre-primary education), the perspectives on wife obedience is clustered in the strongly agree and agree categories, represented by 1 and 2. By education level 5, which represents tertiary edcuation, the perspectives on wife obedience are much more spread out, and there is a greater proportion (though the total amount of people in this category in the population are lower compared with some of the lower categories). 
 
@@ -108,7 +106,7 @@ The multiple regression that was produced also supports the conclusions of the s
 
 However, the age variable is not statistically significant with an alpha of 0.05, because the p value is 0.09, which is greater than 0.05. This means that we cannot conclude that age has an affect on perspectives on obedience for wives. The coefficient of the subjective socioeconomic stauts variable demonstrates that, for a one point increase in subjective socioeconomic condition (ranging from 1 = very good to 4 = very bad), perspectives on obedience for wives increases by 0.054, holding age and education fixed. This coefficient is also very statistically significant because the p value is less than 0.001. 
 
-Conclusion: 
+## Conclusion
 
 Overall, my data supports my hypothesis that a higher education level leads to more progressive perspectives on the roles of wives, specifically a decrease in agreement with the idea that wives must always obey their husbands. The visualization of the dependent variable, perspectives on wife subordination, indicate that most of the population believes that women should always obey their husbands. However, the Perspectives on Wife Obedience vs. Education scatterplot demonstrates that people who have a higher level of education are correlated with more disagreement with this statement. Lastly, the regression demonstrates that there is a positive, statistically significant relationship between education and a more progressive perspective on wife autonomy. 
 
